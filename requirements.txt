@@ -1,0 +1,5 @@
+####### Requirements #######
+svgwrite
+# using customized, fixed versions instead
+# cairosvg
+# svgutils
