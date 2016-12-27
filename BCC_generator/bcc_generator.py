@@ -109,9 +109,9 @@ def from_file(path):
         # ignore comments
         lines = [line.rstrip('\n') for line in f if not line.startswith('#')]
     # split into blocks that fit on one card
-    code_blocks = chunk(lines)
+    code_blocks = chunk(lines, size=6)
     # print two cards on a single sheet of paper (DIN A4)
-    for index, block in enumerate(chunk(code_blocks, 2)):
+    for index, block in enumerate(chunk(code_blocks, size=2)):
         for i, code_block in enumerate(block):
             card = BarcodeCard()
             for word in code_block:

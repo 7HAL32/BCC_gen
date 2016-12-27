@@ -15,10 +15,10 @@ __email__ = "lutz.thies@tu-dresden.de"
 __status__ = "Release"
 
 
-def chunk(enum, size=6):
+def chunk(enum, size):
     """
     Splits an enum into chunks of specified size
-    :param lines: enum (e.g. list)
+    :param enum: enum (e.g. list)
     :param size: integer (size of each chunk)
     :return: list of lists (chunks)
     """
