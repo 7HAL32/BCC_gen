@@ -6,4 +6,3 @@ Handcrafted with :heart: by Lutz Thies in 2016.
 """
 
 from .bcc_generator import *
-from .chunk import *

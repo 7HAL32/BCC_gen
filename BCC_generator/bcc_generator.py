@@ -18,7 +18,6 @@ import glob
 import os
 import svgwrite
 import svgutils.compose
-from .chunk import chunk
 
 __author__ = "Lutz Thies"
 __copyright__ = "Copyright (c) 2016"
@@ -101,6 +100,19 @@ class BarcodeCard:
         :returns: %
         """
         self.svg.saveas(filename)
+
+
+def chunk(l, size):
+    """
+    Splits a list into chunks of specified size
+
+    Credits to Frank Busse for the smart list comprehension
+
+    :param l: list
+    :param size: integer (size of each chunk)
+    :returns: list of lists
+    """
+    return [l[i:i + size] for i in range(0, len(l), size)]
 
 
 def from_file(path):
