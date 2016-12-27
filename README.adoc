@@ -1,0 +1,58 @@
+= Bar Code Card Generator
+
+Public version of the Bar Code Card Generator. Converts binary sequences into bar code-like, printable PDF files. Intended to be used with the Linear Hamming Code Generator (7HAL32/LHC_generator).
+
+This tool is used to create the bar code cards that contain instructions for the stack machine robot which is designed, assembled and programmed by students during the NES RoboLab course at Technische Universität Dresden. Specifications and further information can be found at http://robolab.inf.tu-dresden.de (reachable from within campus network).
+
+NOTE: Currently only supports direct, raw binary input via files.
+
+Developed as part of the NES RoboLab Project at Technische Universität Dresden.
+
+Handcrafted with :heart: by Lutz Thies in 2016.
+
+== Prerequisites:
+
+=== macOS
+
+* brew
+
+=== All platforms
+
+* python3
+* pip3
+
+== Dependencies:
+
+* pycairo
+* svgwrite
+* cairosvg
+* svgutils
+
+== Setup:
+
+=== macOS
+
+1. `brew install py3cairo`
+
+=== Linux
+
+1. `git clone https://github.com/atizo/pycairo/ && cd pycairo && run python3 setup.py install && cd .. && rm -rf pycairo`
+
+=== Windows
+
+*Not tested yet.*
+
+=== All platforms
+[start=2]
+. `pip3 install -r requirements.txt`
+
+. `git clone https://github.com/7HAL32/CairoSVG && cd CairoSVG && python3 setup.py install && cd .. && rm -rf CairoSVG`
+. `git clone https://github.com/7HAL32/svg_utils/ && cd svg_utils && python3 setup.py install && cd .. && rm -rf svg_utils`
+
+
+== Usage:
+
+After the raw binary sequences have been written to an input text file, the required amount of cards can be generated from this file by calling the generator with `python3 ./generate.py --file ./input.txt`.
+
+NOTE: The Shebang was set to `#!/usr/bin/env python3`. Therefore, the leading `python3` may be omitted.
+
