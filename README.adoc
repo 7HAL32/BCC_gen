@@ -8,6 +8,8 @@ NOTE: Currently only supports direct, raw binary input via files.
 
 Developed as part of the NES RoboLab Project at Technische Universität Dresden.
 
+Contributors: Frank Busse and Lutz Thies.
+
 Handcrafted with :heart: by Lutz Thies in 2016.
 
 == Prerequisites:
@@ -30,19 +32,31 @@ Handcrafted with :heart: by Lutz Thies in 2016.
 
 == Setup:
 
-=== macOS
+=== With Docker (recommended)
+
+Install link:https://www.docker.com[Docker] and initially build the image.
+
+```
+> docker build -t bccgen .
+```
+
+=== Without Docker (native)
+
+==== macOS
 
 1. `brew install py3cairo`
 
-=== Linux
+==== Linux
+
+If your distribution does not ship with a pre-installed version of pycairo:
 
 1. `git clone https://github.com/atizo/pycairo/ && cd pycairo && run python3 setup.py install && cd .. && rm -rf pycairo`
 
-=== Windows
+==== Windows
 
 *Not tested yet.*
 
-=== All platforms
+==== All platforms
 [start=2]
 . `pip3 install -r requirements.txt`
 
@@ -52,7 +66,27 @@ Handcrafted with :heart: by Lutz Thies in 2016.
 
 == Usage:
 
-After the raw binary sequences have been written to an input text file, the required amount of cards can be generated from this file by calling the generator with `python3 ./generate.py --file ./input.txt`.
+After the raw binary sequences have been written to an input text file, the cards can be generated. Start the generator with `python3 ./generate.py --file your_input.txt`. Output will be saved to the current working directory.
 
 NOTE: The Shebang was set to `#!/usr/bin/env python3`. Therefore, the leading `python3` may be omitted.
+
+=== With Docker (recommended)
+
+```
+> docker run -it -v /<path>/sample:/BCC_generator/shared bccgen
+
+[create your_input.txt in sample/ (host)]
+
+$ cd BCC_generator/shared/
+$ ../generate.py --file your_input.txt
+Generating cards from your_input.txt
+
+[enjoy your svg and pdf files in sample/ (host)]
+```
+
+=== Without Docker (native)
+
+`python3 ./generate.py --file ./input.txt`.
+
+
 
