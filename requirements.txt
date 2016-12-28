@@ -1,5 +1,5 @@
 ####### Requirements #######
 svgwrite
+cairosvg==1.0.22
 # using customized, fixed versions instead
-# cairosvg
 # svgutils

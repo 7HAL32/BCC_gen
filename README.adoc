@@ -60,7 +60,6 @@ If your distribution does not ship with a pre-installed version of pycairo:
 [start=2]
 . `pip3 install -r requirements.txt`
 
-. `git clone https://github.com/7HAL32/CairoSVG && cd CairoSVG && python3 setup.py install && cd .. && rm -rf CairoSVG`
 . `git clone https://github.com/7HAL32/svg_utils/ && cd svg_utils && python3 setup.py install && cd .. && rm -rf svg_utils`
 
 
