@@ -2,90 +2,30 @@
 
 Public version of the Bar Code Card Generator. Converts binary sequences into bar code-like, printable PDF files. Intended to be used with the Linear Hamming Code Generator (7HAL32/LHC_generator).
 
-This tool is used to create the bar code cards that contain instructions for the stack machine robot which is designed, assembled and programmed by students during the NES RoboLab course at Technische Universität Dresden. Specifications and further information can be found at http://robolab.inf.tu-dresden.de (reachable from within campus network).
+This tool is used to create the bar code cards that contain instructions for the stack machine robot which is designed, assembled and programmed by students during the https://tu-dresden.de/ing/informatik/sya/se/studium/labs-seminars/robolab_nes[NES RoboLab] course at Technische Universität Dresden. Specifications and further information can be found at http://robolab.inf.tu-dresden.de (reachable from within campus network).
 
-NOTE: Currently only supports direct, raw binary input via files.
+Contributors:: Frank Busse and Lutz Thies.
 
-Developed as part of the NES RoboLab Project at Technische Universität Dresden.
-
-Contributors: Frank Busse and Lutz Thies.
-
-Handcrafted with :heart: by Lutz Thies in 2016.
-
-== Prerequisites:
-
-=== macOS
-
-* brew
+== Prerequisites
 
 === All platforms
 
 * python3
 * pip3
 
-== Dependencies:
+=== Dependencies
 
-* pycairo
-* svgwrite
-* cairosvg
-* svgutils
+* reportlab
 
-== Setup:
+== Setup and Usage
 
-=== With Docker (recommended)
-
-Install link:https://www.docker.com[Docker] and initially build the image.
+Install https://bitbucket.org/rptlab/reportlab[reportlab] and run
 
 ```
-> docker build -t bccgen .
+$ ./bcgen.py card1.txt
+[enjoy your card1.pdf file]
 ```
 
-=== Without Docker (native)
+Remember to adjust your printer settings, for instance use "Scale: 100%" in macOS, to suppress scaling.
 
-==== macOS
-
-1. `brew install py3cairo`
-
-==== Linux
-
-If your distribution does not ship with a pre-installed version of pycairo:
-
-1. `git clone https://github.com/atizo/pycairo/ && cd pycairo && run python3 setup.py install && cd .. && rm -rf pycairo`
-
-==== Windows
-
-*Not tested yet.*
-
-==== All platforms
-[start=2]
-. `pip3 install -r requirements.txt`
-
-. `git clone https://github.com/7HAL32/svg_utils/ && cd svg_utils && python3 setup.py install && cd .. && rm -rf svg_utils`
-
-
-== Usage:
-
-After the raw binary sequences have been written to an input text file, the cards can be generated. Start the generator with `python3 ./generate.py --file your_input.txt`. Output will be saved to the current working directory.
-
-NOTE: The Shebang was set to `#!/usr/bin/env python3`. Therefore, the leading `python3` may be omitted.
-
-=== With Docker (recommended)
-
-```
-> docker run -it -v /<path>/sample:/BCC_generator/shared bccgen
-
-[create your_input.txt in sample/ (host)]
-
-$ cd BCC_generator/shared/
-$ ../generate.py --file your_input.txt
-Generating cards from your_input.txt
-
-[enjoy your svg and pdf files in sample/ (host)]
-```
-
-=== Without Docker (native)
-
-`python3 ./generate.py --file ./input.txt`.
-
-
-
+image::sample/card1.png[align="center"]
