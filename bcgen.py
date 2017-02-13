@@ -91,8 +91,10 @@ def draw_markers(canvas, two):
 def draw_name(canvas, name, two):
 	canvas.setFillColorRGB(*col_mkr)
 
-	canvas.drawCentredString(0.25 * width, 20, name + " (1)")
-	if two:
+	if not two:
+		canvas.drawCentredString(0.25 * width, 20, name)
+	else:
+		canvas.drawCentredString(0.25 * width, 20, name + " (1)")
 		canvas.drawCentredString(0.75 * width, 20, name + " (2)")
 
 def main(files):
