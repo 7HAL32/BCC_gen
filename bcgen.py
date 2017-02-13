@@ -64,7 +64,7 @@ def draw_card(canvas, lines, x0, y0):
 				canvas.rect(x, y, bar_w, bar_h, stroke=0, fill=1)
 
 
-def draw_markers(canvas):
+def draw_markers(canvas, two):
 	canvas.setFillColorRGB(*col_bar)
 
 	# draw border markers
@@ -77,7 +77,8 @@ def draw_markers(canvas):
 
 	# draw arrows
 	canvas.drawCentredString(0.25 * width, height - 32, "\u2193")
-	canvas.drawCentredString(0.75 * width, height - 32, "\u2193")
+	if two:
+		canvas.drawCentredString(0.75 * width, height - 32, "\u2193")
 
 	canvas.setStrokeColorRGB(*col_mkr)
 
@@ -87,12 +88,12 @@ def draw_markers(canvas):
 	canvas.line(width / 2, 0, width / 2, height)
 
 
-def draw_name(canvas, name):
+def draw_name(canvas, name, two):
 	canvas.setFillColorRGB(*col_mkr)
 
 	canvas.drawCentredString(0.25 * width, 20, name + " (1)")
-	canvas.drawCentredString(0.75 * width, 20, name + " (2)")
-
+	if two:
+		canvas.drawCentredString(0.75 * width, 20, name + " (2)")
 
 def main(files):
 	for fname in files:
@@ -102,20 +103,21 @@ def main(files):
 		lines = list(map(list, f.read().splitlines()))
 		f.close()
 		assert len(lines) <= 2 * rows, "too many lines for two cards"
+		two = len(lines) > rows
 
 		# create canvas
 		c = Canvas(str(p.with_suffix(".pdf")), pagesize=A4)
 		c.setFont("Helvetica", 12)
 
 		# draw markers
-		draw_markers(c)
+		draw_markers(c, two)
 
 		# draw cards
 		draw_card(c, lines[0:rows],  x_left,  y_left)
 		draw_card(c, lines[rows:2*rows], x_right, y_right)
 
 		# add names
-		draw_name(c, p.stem)
+		draw_name(c, p.stem, two)
 
 		# save pdf
 		c.save()
